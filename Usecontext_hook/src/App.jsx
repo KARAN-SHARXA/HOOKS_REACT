@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { use } from 'react'
+import { createContext } from 'react'
+import ChildA from './assets/component/ChildA';
+import { useState } from 'react';
 
+
+//step1  create Conetxt
+
+// const UserContext =createContext();
+// wrap all the child inside a provider
+// step3 pass value
+// step 4 consumer k andar jaake consume kr lo
+const ThemeContext = createContext()
 function App() {
-  const [count, setCount] = useState(0)
 
+  // const [user,setUser]=useState({name:"karan"})
+
+  const [theme,setTheme] =useState('light')
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      {/* <UserContext.Provider value={user} >
+        <ChildA></ChildA>
+      </UserContext.Provider> */}
+
+      <ThemeContext.Provider value={theme}>
+        <ChildA></ChildA>
+      </ThemeContext.Provider>
+      
+    </div>
   )
 }
 
 export default App
+export {ThemeContext}
